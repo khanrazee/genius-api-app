@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="genius-content">
+        <h2 class="text-center mb-4">Genius Song Search</h2>
+        <%= form_with url: { action: 'index' }, method: :get, class: 'text-center' do |f| %>
+          <div class="form-group mb-0">
+            <%= f.label :name, 'Name:', class: 'sr-only' %>
+            <div class="input-group">
+              <%= f.text_field :name, class: 'form-control', placeholder: 'Enter name' %>
+              <div class="input-group-append ml-4">
+                <%= f.submit 'Search', class: 'btn btn-primary' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-striped mt-3">
+    <thead>
+    <tr>
+      <th> Title </th>
+      <th> URL </th>
+      <th> Header Image </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @songs.each do |song| %>
+      <tr>
+        <td> <%= song.title %> </td>
+        <td> <%= link_to song.url, song.url %> </td>
+        <td class="image-container" > <%= image_tag(song.header_image_url, alt: "Header Image", class: "image-styling ") %> </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
